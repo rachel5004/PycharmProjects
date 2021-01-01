@@ -322,4 +322,17 @@ def prime(num):
 #     if lst[0] == 0:
 #         break
 #     ractangle(lst)
-n, m = map(int(input).split())
+
+def blackJack(list, num):
+    res = 0
+    for i in list:
+        for j in range(list.index(i)+1, len(list)):
+            for k in range(1,len(list)-j):
+                a = i+list[j]+list[j+k]
+                if a <= num and a>res:
+                    res = a
+    return print(res)
+
+n, m = map(int,input().split())
+num = list(map(int,input().split()))
+blackJack(num, m)
