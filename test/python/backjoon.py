@@ -322,6 +322,4 @@ def prime(num):
 #     if lst[0] == 0:
 #         break
 #     ractangle(lst)
-n = int(input())
-arr = [["*"]*n for _ in range(n)]
-print(arr)
+n, m = map(int(input).split())
