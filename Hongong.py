@@ -59,8 +59,9 @@ test_input = fish_data[35:]
 test_target = fish_target[35:]
 
 kn = kn.fit(train_input,train_target)
-kn.score(test_input,test_target)
-
+kn.score(test_input,test_target) # 정확도 0.0 출력
+# 샘플링 편향: 훈련세트와 테스트세트에 샘플이 골고루 섞이지 않으면 샘플링이 한쪽으로 치우침.
+# 훈련세트에는 도미만, 테스트세트에는 빙어만 들어있는 상태
 input_arr = np.array(fish_data)
 target_arr = np.array(fish_target)
 # print(input_arr.shape)  # 샘플 수, 특성 수 출력

@@ -323,16 +323,32 @@ def prime(num):
 #         break
 #     ractangle(lst)
 
-def blackJack(list, num):
-    res = 0
-    for i in list:
-        for j in range(list.index(i)+1, len(list)):
-            for k in range(1,len(list)-j):
-                a = i+list[j]+list[j+k]
-                if a <= num and a>res:
-                    res = a
-    return print(res)
-
-n, m = map(int,input().split())
-num = list(map(int,input().split()))
-blackJack(num, m)
+# def blackJack(list, num):
+#     res = 0
+#     for i in list:
+#         for j in range(list.index(i)+1, len(list)):
+#             for k in range(1,len(list)-j):
+#                 a = i+list[j]+list[j+k]
+#                 if a <= num and a>res:
+#                     res = a
+#     return print(res)
+#
+# n, m = map(int,input().split())
+# num = list(map(int,input().split()))
+# blackJack(num, m)
+# str = str(input())
+# lst = ["c=","c-","dz=","d-","lj","nj","s=","z="]
+# cnt = 0
+# for i in lst:
+#     str = str.replace(i,"a")
+# print(len(str))
+str = str(input())
+while True:
+    i = 0
+    cnt = 1
+    for j in range(1,len(str)-i):
+        if str[i] == str[i+j]:
+            cnt+=1
+        else: i+=j
+    if i == len(str)-1: break
+print(cnt)
