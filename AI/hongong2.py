@@ -3,46 +3,6 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
 
-# 생선분류 문제
-bream_length = [25.4, 26.3, 26.5, 29.0, 29.0, 29.7, 29.7, 30.0, 30.0, 30.7, 31.0, 31.0,
-                31.5, 32.0, 32.0, 32.0, 33.0, 33.0, 33.5, 33.5, 34.0, 34.0, 34.5, 35.0,
-                35.0, 35.0, 35.0, 36.0, 36.0, 37.0, 38.5, 38.5, 39.5, 41.0, 41.0]
-bream_weight = [242.0, 290.0, 340.0, 363.0, 430.0, 450.0, 500.0, 390.0, 450.0, 500.0, 475.0, 500.0,
-                500.0, 340.0, 600.0, 600.0, 700.0, 700.0, 610.0, 650.0, 575.0, 685.0, 620.0, 680.0,
-                700.0, 725.0, 720.0, 714.0, 850.0, 1000.0, 920.0, 955.0, 925.0, 975.0, 950.0]
-# 도미의 길이,무게
-smelt_length = [9.8, 10.5, 10.6, 11.0, 11.2, 11.3, 11.8, 11.8, 12.0, 12.2, 12.4, 13.0, 14.3, 15.0]
-smelt_weight = [6.7, 7.5, 7.0, 9.7, 9.8, 8.7, 10.0, 9.9, 9.8, 12.2, 13.4, 12.2, 19.7, 19.9]
-# 빙어의 길이,무게
-#
-# plt.scatter(bream_length,bream_weight)
-# plt.scatter(smelt_length,smelt_weight)
-# plt.xlabel('lenght')         # X축은 길이
-# plt.ylabel('weight')         # Y축은 무게
-# plt.show()
-
-# 머신러닝 프로그램
-lenght = bream_length + smelt_length
-weight = bream_weight + smelt_weight
-# fish_data = [[l, w] for l, w in zip(lenght, weight)]
-# fish_target = [1] * 35 + [0] * 14
-#
-kn = KNeighborsClassifier()
-# kn.fit(fish_data, fish_target)     # fit() = training method
-# kn.score(fish_data, fish_target)     # score() = 평가 method(0~1)
-# kn.predict([[30,600]])       # 길이 30, 무게 600인 생선은 도미일까 광어일까?
-#
-# kn49 = KNeighborsClassifier(n_neighbors=49)    # 참고 데이터를 49개로 한 모델
-# kn49.fit(fish_data, fish_target)
-# kn49.score(fish_data, fish_target)
-# # Question - 기본값 5~49 중 정확도가 1.0 이하인 이웃의 수는?
-# for n in range(5,50):
-#   kn.n_neighbors = n
-#   score = kn.score(fish_data, fish_target)
-#   if score < 1:
-#     print(n, score)
-#     break
-#Chapter2
 fish_lenght = [25.4, 26.3, 26.5, 29.0, 29.0, 29.7, 29.7, 30.0, 30.0, 30.7, 31.0, 31.0,
                 31.5, 32.0, 32.0, 32.0, 33.0, 33.0, 33.5, 33.5, 34.0, 34.0, 34.5, 35.0,
                 35.0, 35.0, 35.0, 36.0, 36.0, 37.0, 38.5, 38.5, 39.5, 41.0, 41.0, 9.8,
@@ -51,6 +11,7 @@ fish_weight = [242.0, 290.0, 340.0, 363.0, 430.0, 450.0, 500.0, 390.0, 450.0, 50
                 500.0, 340.0, 600.0, 600.0, 700.0, 700.0, 610.0, 650.0, 575.0, 685.0, 620.0, 680.0,
                 700.0, 725.0, 720.0, 714.0, 850.0, 1000.0, 920.0, 955.0, 925.0, 975.0, 950.0,
                6.7, 7.5, 7.0, 9.7, 9.8, 8.7, 10.0, 9.9, 9.8, 12.2, 13.4, 12.2, 19.7, 19.9]
+kn = KNeighborsClassifier()
 # fish_data = [[l, w] for l, w in zip(fish_lenght,fish_weight)]
 # fish_target = [1]*35 + [0]*14
 #
@@ -84,7 +45,8 @@ fish_weight = [242.0, 290.0, 340.0, 363.0, 430.0, 450.0, 500.0, 390.0, 450.0, 50
 # print(kn.score(test_input, test_target))
 # print(kn.predict(test_input))
 
-#Chapter 2-2
+# Chapter 2-2
+
 fish_data = np.column_stack((fish_lenght, fish_weight))
 fish_target = np.concatenate((np.ones(35), np.zeros(14)))
 # train_input, test_input, train_target, test_target = train_test_split(fish_data,fish_target,random_state=42)
@@ -97,5 +59,34 @@ train_input, test_input, train_target, test_target = train_test_split(fish_data,
 # print(test_target)  #[0. 0. 1. 0. 1. 0. 1. 1. 1. 1. 1. 1. 1.]
 
 kn.fit(train_input, train_target)
-print(kn.score(test_input, test_target))
-#94page
+# print(kn.score(test_input, test_target))
+#
+# print(kn.predict([[25,150]]))  #[0.] = 빙어
+
+# plt.scatter(train_input[:,0],train_input[:,1])
+# plt.scatter(25,150,marker='^')    # marker - 매개변수의 모양 지정
+# plt.xlabel('length')
+# plt.ylabel('weight')
+# plt.show()
+
+distance, indexes = kn.kneighbors([[25,150]])
+
+# plt.scatter(train_input[:,0],train_input[:,1])
+# plt.scatter(25,150,marker='^')    # marker - 매개변수의 모양 지정
+# plt.scatter(train_input[indexes,0],train_input[indexes,1],marker='D')  # 지정샘플에 가장 가까운 5개의 샘플
+# plt.xlabel('length')
+# plt.ylabel('weight')
+# plt.show()
+
+# print(train_input[indexes])  # 5개 샘플의 데이터 확인
+# print(train_target[indexes])
+
+# print(distance)  #[[92.00 130.48 130.73 138.32 138.39]]
+plt.scatter(train_input[:,0],train_input[:,1])
+plt.scatter(25,150,marker='^')    # marker - 매개변수의 모양 지정
+plt.scatter(train_input[indexes,0],train_input[indexes,1],marker='D')  # 지정샘플에 가장 가까운 5개의 샘플
+plt.xlim(0,1000)    # xlim - x축의 범위 지정
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
+#page 98

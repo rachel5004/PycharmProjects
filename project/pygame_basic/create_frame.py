@@ -13,9 +13,9 @@ clock = pygame.time.Clock()
 
 # 1. 사용자 게임 초기화 (배경, 게임 이미지)
 # background image
-background = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/pygame_basic/pygame.png")
+background = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/pygame_basic/pygame.png")
 # character setting
-character = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/pygame_basic/character.png")
+character = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/pygame_basic/character.png")
 character_size = character.get_rect().size
 character_width = character_size[0]
 character_height = character_size[1]
@@ -27,7 +27,7 @@ to_y = 0
 # 이동속도
 charater_speed = 0.6
 # enemy setting
-enemy = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/pygame_basic/enemy.png")
+enemy = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/pygame_basic/enemy.png")
 enemy_size = character.get_rect().size
 enemy_width = enemy_size[0]
 enemy_height = enemy_size[1]

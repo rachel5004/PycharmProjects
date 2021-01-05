@@ -14,16 +14,16 @@ clock = pygame.time.Clock()
 
 # 1. 사용자 게임 초기화 (배경, 게임 이미지)
 # background image
-background = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/BallGame/background.png")
+background = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/BallGame/background.png")
 # stage setting
-stage = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/BallGame/stage.png")
+stage = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/BallGame/stage.png")
 stage_size = stage.get_rect().size
 stage_width = stage_size[0]
 stage_height = stage_size[1]
 stage_x_pos = 0
 stage_y_pos = screen_height - stage_height
 
-weapon = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/BallGame/weapon.png")
+weapon = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/BallGame/weapon.png")
 weapon_size = weapon.get_rect().size
 weapon_width = weapon_size[0]
 weapon_height = weapon_size[1]
@@ -32,7 +32,7 @@ weapon_y_pos = screen_height
 weapon_speed = 0.6
 
 # character setting
-character = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/BallGame/character.png")
+character = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/BallGame/character.png")
 character_size = character.get_rect().size
 character_width = character_size[0]
 character_height = character_size[1]
@@ -44,7 +44,7 @@ to_y = 0
 # 이동속도
 character_speed = 0.6
 # enemy setting
-ball = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/BallGame/ball_1.png")
+ball = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/BallGame/ball_1.png")
 ball_size = character.get_rect().size
 ball_width = ball_size[0]
 ball_height = ball_size[1]
@@ -52,7 +52,7 @@ ball_x_pos = randrange(0, screen_width-ball_width)  # place mid
 ball_y_pos = 0
 ball_speed = 0.6
 
-ball2 = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/test/BallGame/ball_2.png")
+ball2 = pygame.image.load("C:/Users/USER/PycharmProjects/untitled/project/BallGame/ball_2.png")
 ball2_size = character.get_rect().size
 ball2_width = ball_size[0]
 ball2_height = ball_size[1]

@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sqlite3
 page = 10
-conn = sqlite3.connect('test.db')
+conn = sqlite3.connect('project.db')
 c = conn.cursor()
 def select_all(con):
     return con.execute("select * from restaurant").fetchall()
