@@ -342,13 +342,27 @@ import math
 # for i in lst:
 #     str = str.replace(i,"a")
 # print(len(str))
-from string import ascii_uppercase
-
-str = input()
-lst = ['ABC','DEF','GHI','JKL','MNO','PQRS','TUV','WXYZ']
-cnt = 0
-for i in str:
-    for j in lst:
-        if i in j:
-            cnt += (lst.index(j)+3)
-print(cnt)
+# from string import ascii_uppercase
+#
+# str = input()
+# lst = ['ABC','DEF','GHI','JKL','MNO','PQRS','TUV','WXYZ']
+# cnt = 0
+# for i in str:
+#     for j in lst:
+#         if i in j:
+#             cnt += (lst.index(j)+3)
+# print(cnt)
+def hap(num):
+    sum = 0
+    num = str(num)
+    for i in range(len(num)):
+        sum += int(num[i])
+    num = int(num)
+    return num+sum
+n = int(input())
+res = 0
+for i in range(1,n+1):
+    if hap(i) == n:
+        res = i
+        break
+print(res)
