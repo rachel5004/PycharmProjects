@@ -274,12 +274,12 @@ import math
 # n = int(input())
 # lst = [*map(int, input().split())]
 #
-def prime(num):
-    if num == 1: return False
-    for i in range(2, int(math.sqrt(num)) + 1):
-        if num % i == 0: return False
-    return True
-
+# def prime(num):
+#     if num == 1: return False
+#     for i in range(2, int(math.sqrt(num)) + 1):
+#         if num % i == 0: return False
+#     return True
+#
 
 # cnt = 0
 # for i in lst:
@@ -342,13 +342,13 @@ def prime(num):
 # for i in lst:
 #     str = str.replace(i,"a")
 # print(len(str))
-str = str(input())
-while True:
-    i = 0
-    cnt = 1
-    for j in range(1,len(str)-i):
-        if str[i] == str[i+j]:
-            cnt+=1
-        else: i+=j
-    if i == len(str)-1: break
+from string import ascii_uppercase
+
+str = input()
+lst = ['ABC','DEF','GHI','JKL','MNO','PQRS','TUV','WXYZ']
+cnt = 0
+for i in str:
+    for j in lst:
+        if i in j:
+            cnt += (lst.index(j)+3)
 print(cnt)

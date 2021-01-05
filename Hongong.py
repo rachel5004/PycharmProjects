@@ -98,4 +98,4 @@ train_input, test_input, train_target, test_target = train_test_split(fish_data,
 
 kn.fit(train_input, train_target)
 print(kn.score(test_input, test_target))
-
+#94page
