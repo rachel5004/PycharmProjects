@@ -352,17 +352,32 @@ import math
 #         if i in j:
 #             cnt += (lst.index(j)+3)
 # print(cnt)
-def hap(num):
-    sum = 0
-    num = str(num)
-    for i in range(len(num)):
-        sum += int(num[i])
-    num = int(num)
-    return num+sum
-n = int(input())
-res = 0
-for i in range(1,n+1):
-    if hap(i) == n:
-        res = i
-        break
-print(res)
+
+# def hap(num):
+#     sum = 0
+#     num = str(num)
+#     for i in range(len(num)):
+#         sum += int(num[i])
+#     num = int(num)
+#     return num+sum
+# n = int(input())
+# res = 0
+# for i in range(1,n+1):
+#     if hap(i) == n:
+#         res = i
+#         break
+# print(res)
+
+lst = []
+for _ in range(int(input())):
+    w, h = map(int, input().split())
+    lst.append((w, h))
+for i in lst:
+    rank = 1
+    for j in lst:
+        if i[0] < j[0] and i[1] < j[1]:
+            rank += 1
+    print(rank, end = " ")
+
+num_student = int(input())
+student_list = []
