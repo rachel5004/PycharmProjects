@@ -78,15 +78,33 @@ distance, indexes = kn.kneighbors([[25,150]])
 # plt.ylabel('weight')
 # plt.show()
 
-# print(train_input[indexes])  # 5개 샘플의 데이터 확인
-# print(train_target[indexes])
+print(train_input[indexes])  # 5개 샘플의 데이터 확인
+print(train_target[indexes])
 
 # print(distance)  #[[92.00 130.48 130.73 138.32 138.39]]
-plt.scatter(train_input[:,0],train_input[:,1])
-plt.scatter(25,150,marker='^')    # marker - 매개변수의 모양 지정
-plt.scatter(train_input[indexes,0],train_input[indexes,1],marker='D')  # 지정샘플에 가장 가까운 5개의 샘플
-plt.xlim(0,1000)    # xlim - x축의 범위 지정
+# plt.scatter(train_input[:,0],train_input[:,1])
+# plt.scatter(25,150,marker='^')    # marker - 매개변수의 모양 지정
+# plt.scatter(train_input[indexes,0],train_input[indexes,1],marker='D')  # 지정샘플에 가장 가까운 5개의 샘플
+# plt.xlim(0,1000)    # xlim - x축의 범위 지정
+# plt.xlabel('length')
+# plt.ylabel('weight')
+# plt.show()
+
+mean = np.mean(train_input, axis=0)   # mean - 평균 계산
+std = np.std(train_input, axis=0)    # std - 표준편차 계산
+train_scaled = (train_input - mean) / std
+new = ([25,150] - mean) / std
+test_scaled = (test_input - mean) / std
+
+
+kn.fit(train_scaled, train_target)
+print(kn.score(test_scaled, test_target))    #[1.]
+print(kn.predict([new]))   # [1.] 도미!
+
+distance, indexes = kn.kneighbors([new])
+plt.scatter(train_scaled[:,0],train_scaled[:,1])
+plt.scatter(new[0],new[1],marker='^')
+plt.scatter(train_scaled[indexes,0],train_scaled[indexes,1],marker='D')
 plt.xlabel('length')
 plt.ylabel('weight')
 plt.show()
-#page 98
