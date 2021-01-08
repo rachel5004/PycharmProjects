@@ -408,10 +408,7 @@ n = int(input())
 season = 0
 i = 666
 while True:
-    stri = str(i)
-    if "666" in stri:
+    if "666" in str(i):
         season+=1
-    if season == n:
-        break
+        if season == n: print(i); break
     i+=1
-print(i)
