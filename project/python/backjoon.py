@@ -368,16 +368,46 @@ import math
 #         break
 # print(res)
 
-lst = []
-for _ in range(int(input())):
-    w, h = map(int, input().split())
-    lst.append((w, h))
-for i in lst:
-    rank = 1
-    for j in lst:
-        if i[0] < j[0] and i[1] < j[1]:
-            rank += 1
-    print(rank, end = " ")
+# lst = []
+# for _ in range(int(input())):
+#     w, h = map(int, input().split())
+#     lst.append((w, h))
+# for i in lst:
+#     rank = 1
+#     for j in lst:
+#         if i[0] < j[0] and i[1] < j[1]:
+#             rank += 1
+#     print(rank, end = " ")
+#
+# num_student = int(input())
+# student_list = []
 
-num_student = int(input())
-student_list = []
+m, n = map(int, input().split())
+chess = []
+cnt = 0
+for _ in range(n):
+    chess.append(input())
+
+for i in range(n - 7):
+    for j in range(m - 7):
+        idx1 = 0
+        idx2 = 0
+        for k in range(k, k + 8):
+            for l in range(j, j + 8):              # 8X8 범위를 B와 W로 번갈아가면서 검사
+                if (k + l)%2 == 0:
+                    if l[k][l] != 'W': idx1 += 1
+                    if l[k][l] != 'B': idx2 += 1
+                else :
+                    if l[k][l] != 'B': idx1 += 1
+                    if l[k][l] != 'W': idx2 += 1
+        cnt.append(idx1)                          # W로 시작했을 때 칠해야 할 부분
+        cnt.append(idx2)
+print(min(cnt))
+# for i in range(0,m-1):
+#     if chess[i] == chess[i + 1] == chess[i+2]:
+#         cnt += n
+#         continue
+#     for j in range(0,n):
+#         if chess[i][j] != chess[i+1][n-1-j]:
+#             cnt+=1
+print(cnt)
