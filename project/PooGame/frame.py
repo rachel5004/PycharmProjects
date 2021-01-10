@@ -25,6 +25,7 @@ character_y_pos = screen_height - character_height
 # 이동 좌표
 to_x = 0
 to_y = 0
+
 # 이동속도
 charater_speed = 0.6
 # enemy setting
