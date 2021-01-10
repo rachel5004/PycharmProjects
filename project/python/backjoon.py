@@ -404,11 +404,17 @@ import math
 #         cnt.append(bw)
 # print(min(cnt))
 
-n = int(input())
-season = 0
-i = 666
-while True:
-    if "666" in str(i):
-        season+=1
-        if season == n: print(i); break
-    i+=1
+# n = int(input())
+# season = 0
+# i = 666
+# while True:
+#     if "666" in str(i):
+#         season+=1
+#         if season == n: print(i); break
+#     i+=1
+lst = []
+for _ in range(int(input())):
+    lst.append(int(input()))
+lst.sort(reverse=True)
+for i in lst:
+    print(i)
