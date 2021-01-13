@@ -420,7 +420,7 @@ import math
 #     print(i)
 
 def QuickSort(arr,start,end):
-    if start >= end: return;
+    if start >= end: return
     pivot = start
     i = start+1
     j = end
