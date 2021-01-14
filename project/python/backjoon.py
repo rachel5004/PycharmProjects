@@ -419,28 +419,33 @@ import math
 # for i in lst:
 #     print(i)
 
-def QuickSort(arr,start,end):
-    if start >= end: return
-    pivot = start
-    i = start+1
-    j = end
-    tmp = 0
-    while i<=j:
-        while i<=end and arr[i] <= arr[pivot]: i+=1
-        while arr[j] >= arr[pivot] and j>start: j-=1
-        if i>j:
-            tmp = arr[j]
-            arr[j] = arr[pivot]
-            arr[pivot] = tmp
-        else:
-            tmp = arr[j]
-            arr[j] = arr[i]
-            arr[i] = tmp
-    QuickSort(arr,start,j-1)
-    QuickSort(arr,j+1,end)
-    return arr
-
-num=[]
+# def QuickSort(arr,start,end):
+#     if start >= end: return
+#     pivot = start
+#     i = start+1
+#     j = end
+#     tmp = 0
+#     while i<=j:
+#         while i<=end and arr[i] <= arr[pivot]: i+=1
+#         while arr[j] >= arr[pivot] and j>start: j-=1
+#         if i>j:
+#             tmp = arr[j]
+#             arr[j] = arr[pivot]
+#             arr[pivot] = tmp
+#         else:
+#             tmp = arr[j]
+#             arr[j] = arr[i]
+#             arr[i] = tmp
+#     QuickSort(arr,start,j-1)
+#     QuickSort(arr,j+1,end)
+#     return arr
+#
+# num=[]
+# for _ in range(int(input())):
+#     num.append(int(input()))
+# print(QuickSort(num,0,len(num)-1))
+num = []
 for _ in range(int(input())):
     num.append(int(input()))
-print(QuickSort(num,0,len(num)-1))
+num.sort()
+print(num)
