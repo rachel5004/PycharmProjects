@@ -449,43 +449,59 @@ import math
 #     num.append(int(input()))
 # num.sort()
 # print(num)
-def InsertionSort(arr):
-    for i in range(len(arr)):
-        for j in range(i, 0, -1):
-            if arr[j] < arr[j - 1]:
-                arr[j], arr[j - 1] = arr[j - 1], arr[j]
-            else:
-                break
-    return arr
-def oft(arr):
-    from collections import Counter
-    maxlst = Counter(arr)
-    maxs = [k for k, v in maxlst.items() if v == max(maxlst.values())]
-    maxs.sort()
+# def InsertionSort(arr):
+#     for i in range(len(arr)):
+#         for j in range(i, 0, -1):
+#             if arr[j] < arr[j - 1]:
+#                 arr[j], arr[j - 1] = arr[j - 1], arr[j]
+#             else:
+#                 break
+#     return arr
+# def oft(arr):
+#     from collections import Counter
+#     maxlst = Counter(arr)
+#     maxs = [k for k, v in maxlst.items() if v == max(maxlst.values())]
+#     maxs.sort()
+#
+#     return maxs[0] if len(maxs) == 1 else maxs[1]
+# lst = []
+# for _ in range(int(sys.stdin.readline())):
+#   lst.append(int(sys.stdin.readline()))
+# print(round(sum(lst)/len(lst)))
+# InsertionSort(lst)
+# print(lst[len(lst)//2])
+# maxcnt = 1
+# maxnum = 0
+# maxlst=[]
+# for i in lst:
+#   if lst.count(i)>maxcnt:
+#     maxcnt = lst.count(i)
+#     maxnum = i
+#     maxlst.append(maxnum)
+#   elif len(maxlst)>0 and lst.count(i) == maxcnt and i != maxnum:
+#     if i not in maxlst:
+#         maxlst.append(i)
+# maxlst.sort()
+# if len(maxlst) == 1:
+#   print(maxlst[0])
+# elif len(maxlst)==0:
+#     print(lst[1])
+# else: print(maxlst[1])
+# print(oft(lst))
+# print(lst[len(lst)-1]-lst[0])
+def self_num(a):
+    if 10<=a<100:
+        d = a + a//10 + a%10
+    elif 100<=a<1000:
+        d = a+a//100+(a//10)%10+a%10
+    else:
+        d = a+a//1000+(a//100)%10+(a//10)%10+a%10
+    return d
 
-    return maxs[0] if len(maxs) == 1 else maxs[1]
-lst = []
-for _ in range(int(sys.stdin.readline())):
-  lst.append(int(sys.stdin.readline()))
-print(round(sum(lst)/len(lst)))
-InsertionSort(lst)
-print(lst[len(lst)//2])
-maxcnt = 1
-maxnum = 0
-maxlst=[]
-for i in lst:
-  if lst.count(i)>maxcnt:
-    maxcnt = lst.count(i)
-    maxnum = i
-    maxlst.append(maxnum)
-  elif len(maxlst)>0 and lst.count(i) == maxcnt and i != maxnum:
-    if i not in maxlst:
-        maxlst.append(i)
-maxlst.sort()
-if len(maxlst) == 1:
-  print(maxlst[0])
-elif len(maxlst)==0:
-    print(lst[1])
-else: print(maxlst[1])
-print(oft(lst))
-print(lst[len(lst)-1]-lst[0])
+lst_res = [i for i in range(1,101)]
+for a in range(1,101):
+    if self_num(a) in range(1,101):
+        try: lst_res.remove(self_num(a))
+        except: pass
+    if a in lst_res:
+        print(a)
