@@ -489,19 +489,25 @@ import math
 # else: print(maxlst[1])
 # print(oft(lst))
 # print(lst[len(lst)-1]-lst[0])
-def self_num(a):
-    if 10<=a<100:
-        d = a + a//10 + a%10
-    elif 100<=a<1000:
-        d = a+a//100+(a//10)%10+a%10
-    else:
-        d = a+a//1000+(a//100)%10+(a//10)%10+a%10
-    return d
-
-lst_res = [i for i in range(1,101)]
-for a in range(1,101):
-    if self_num(a) in range(1,101):
-        try: lst_res.remove(self_num(a))
-        except: pass
-    if a in lst_res:
-        print(a)
+# def self_num(a):
+#     if 10<=a<100:
+#         d = a + a//10 + a%10
+#     elif 100<=a<1000:
+#         d = a+a//100+(a//10)%10+a%10
+#     else:
+#         d = a+a//1000+(a//100)%10+(a//10)%10+a%10
+#     return d
+#
+# lst_res = [i for i in range(1,101)]
+# for a in range(1,101):
+#     if self_num(a) in range(1,101):
+#         try: lst_res.remove(self_num(a))
+#         except: pass
+#     if a in lst_res:
+#         print(a)
+def div(a,b):
+    if b == 0:
+        print("can't div by 0")
+        exit()
+    else: return a/b
+print(div(5,0))
