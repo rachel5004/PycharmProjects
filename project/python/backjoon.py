@@ -505,9 +505,6 @@ import math
 #         except: pass
 #     if a in lst_res:
 #         print(a)
-def div(a,b):
-    if b == 0:
-        print("can't div by 0")
-        exit()
-    else: return a/b
-print(div(5,0))
+def prt(a,b):
+    print(a,b)
+print(1,3)
