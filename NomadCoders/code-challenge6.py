@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as bs
+from babel.numbers import format_currency
 
 dic = []
 url = requests.get("https://www.iban.com/currency-codes")
@@ -28,18 +29,25 @@ def convert(country1, country2):
     print(f"How many {list(dic[country1].values())[0]} do you want to convert to {list(dic[country2].values())[0]}?")
     try:
         money = int(input())
-        pass
-        # convert src
+        url = f"https://transferwise.com/gb/currency-converter/{list(dic[country1].values())[0]}-to-{list(dic[country2].values())[0]}-rate?amount={money}"
+        result = requests.get(url)
+        soup = bs(result.text, "html.parser")
+        currency = float(soup.find("span", {"class": "text-success"}).get_text())
+
+        inmoney = format_currency(money, list(dic[country1].values())[0])
+        convert = format_currency(money*currency, list(dic[country2].values())[0])
+        print(f"{inmoney} is {convert}")
     except:
         print("That's not a number.")
         convert(country1,country2)
+
 
 def main():
     num = 0
     for i in dic:
         print("#", num, list(i.keys())[0])
         num += 1
-    print("Where are oy from? Choose a country by number.")
+    print("Where are you from? Choose a country by number.")
     country1 = choice()
     print("Now choose another country.")
     country2 = choice()
