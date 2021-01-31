@@ -22,7 +22,7 @@ def extract_indeed_pages():
 def extract_indeed_jobs(last_page):
     jobs = []
     for n in range(last_page):
-        print(f"Scrapping page {n}...")
+        print(f"Scrapping Indeed: page {n+1}...")
         result = requests.get(f"{url}&start={n * limit}")
         soup = BeautifulSoup(result.text, "html.parser")
         results = soup.find_all("div",{"class":"jobsearch-SerpJobCard"})
