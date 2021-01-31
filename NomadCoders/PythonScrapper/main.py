@@ -1,8 +1,8 @@
-import indeed_Scrapper
-import stackoverflow_Scrapper
+from indeed_Scrapper import get_indeed_jobs
+from stackoverflow_Scrapper import get_so_jobs
+from save import save_to_file
 
-indeed_jobs = indeed_Scrapper.get_jobs()
-so_jobs = stackoverflow_Scrapper.get_jobs()
-
-print(indeed_jobs)
-print(so_jobs)
+indeed_jobs = get_indeed_jobs()
+so_jobs = get_so_jobs()
+jobs = indeed_jobs+so_jobs
+save_to_file(jobs)
