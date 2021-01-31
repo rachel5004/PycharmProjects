@@ -28,12 +28,12 @@ def extract_indeed_jobs(last_page):
         results = soup.find_all("div",{"class":"jobsearch-SerpJobCard"})
         #print(results)
         for result in results:
-            job = extract_jobs(result)
+            job = extract_jobinfo(result)
             jobs.append(job)
     return jobs
 
 
-def extract_jobs(html):
+def extract_jobinfo(html):
     title = html.find("h2", {"class": "title"})
     title_anchor = title.find("a")["title"]
     title = title_anchor
@@ -45,15 +45,13 @@ def extract_jobs(html):
         company = company.string.replace("\n","")
 
     location = html.find("div",{"class":"recJobLoc"})["data-rc-loc"]
-
     job_id = html["data-jk"]
-
 
     return {"title":title, "company":company, "location":location
             ,"link":f"https://kr.indeed.com/viewjob?jk={job_id}"}
 
 
-last_indeed_page = extract_indeed_pages()
-indeed_jobs = extract_indeed_jobs(last_indeed_page)
-
-print(indeed_jobs)
+def get_jobs():
+    last_page = extract_indeed_pages()
+    jobs = extract_indeed_jobs(last_page)
+    return jobs
