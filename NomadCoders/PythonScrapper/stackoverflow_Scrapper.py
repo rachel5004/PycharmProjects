@@ -41,7 +41,7 @@ def extract_jobinfo(html):
         , "link": f"https://stackoverflow.com/jobs/{job_id}"}
 
 
-def get_jobs():
+def get_so_jobs():
     last_page = extract_so_pages()
     jobs = extract_so_jobs(last_page)
     return jobs
