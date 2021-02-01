@@ -23,7 +23,7 @@ def get_companies():
     results = soup.find_all("li",{"class":"impact"})
     for result in results:
         company = result.find("span",{"class":"company"}).get_text()
-        link = result.find_all("a").attrs['href']
+        link = result.find("a").attrs['href']
         companies.append({"company":company,"link":link})
     return companies
 
@@ -33,15 +33,15 @@ def extract_company(companies):
     for company in companies:
         response = requests.get(company["link"])
         soup = bs(response.text,"html.parser")
-        name = company["company"]
         jobdata = get_jobdata(soup)
-        save_to_file(company["company"],jobdata)
-
+        try:
+            save_to_file(company["company"],jobdata)
+        except:pass
 
 # job data
 def get_jobdata(link):
-    job = bs(requests.get(link).text,"html.parser")
-    jobs = job.find_all("tr")
+    jobs = link.find_all("tr")
+    res = []
     for html in jobs:
         try:
             place = html.find("td",{"class":"local"}).get_text()
@@ -49,9 +49,12 @@ def get_jobdata(link):
             time = html.find("span",{"class":"time"}).get_text()
             pay = html.find("td", {"class": "pay"}).get_text()
             date = html.find("td", {"class": "regDate"}).get_text()
+            res.append({"place":place,"title": title, "time": time
+                    ,"pay": pay, "date": date})
         except: pass
-
-    return {"place":place,"title": title, "time": time
-         ,"pay": pay, "date": date}
+    return res
 
 
+
+companies = get_companies()
+extract_company(companies)

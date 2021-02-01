@@ -23,6 +23,7 @@ def extract_indeed_jobs(last_page):
     jobs = []
     for n in range(last_page):
         print(f"Scrapping Indeed: page {n+1}...")
+        # {url}&start=게시물의 시작넘버 : 첫페이지=0 둘째페이지=50...
         result = requests.get(f"{url}&start={n * limit}")
         soup = BeautifulSoup(result.text, "html.parser")
         results = soup.find_all("div",{"class":"jobsearch-SerpJobCard"})
@@ -39,11 +40,13 @@ def extract_jobinfo(html):
     title = title_anchor
 
     company = html.find("span", {"class": "company"})
+    # 회사명이 a 태그 안에 존재하지 않는 케이스도 있음
     if company.find("a") is not None:
         company = company.find("a").string.replace("\n","")
     else:
         company = company.string.replace("\n","")
 
+    # <div class="recJobLoc" data-rc-loc="location">
     location = html.find("div",{"class":"recJobLoc"})["data-rc-loc"]
     job_id = html["data-jk"]
 
