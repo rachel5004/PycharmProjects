@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Koiil News</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>{{post.title}}</h1>
+        <div>
+            {{post.points}} | {{post.by}} | <a href="{{post.link}}" target="_blank">{{post.link}}</a>
+        </div>
+    </header>
+    <main>
+        {% for comment in comments %}
+            <div>
+                <strong>{{comment.name}}</strong>
+                <p></p>
+                <p>{{comment.content}}</p>
+                <p></p>
+                <hr>
+            </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
+site = "https://news.ycombinator.com/"
 
 def extract_posts(word):
-    url = f"https://news.ycombinator.com/{word}"
+    url = site+word
     posts = []
     response = requests.get(url)
     target_list = BeautifulSoup(response.text, "html.parser").find("table", {"class": "itemlist"}).find_all("tr")
@@ -12,24 +13,23 @@ def extract_posts(word):
         target = [target_list[i], target_list[i + 1]]
         targets.append(target)
         # target = [title, subinfo]
-        for target in targets:
-            try:
-                if word == "news":
-                    post = popular_post_info(target)
-                elif word == "newest":
-                    post = new_post_info(target)
-            except:
-                pass
-            posts.append(post)
-    print(posts)
+    for target in targets:
+        try:
+            post = post_info(url,target)
+        except:
+            pass
+        posts.append(post)
+    return posts
 
 
 # <tr> athing > title & link
 # <tr> > subsidery info(points, by, comments)
 # <tr> spacer > 공백 분리자
 
-def popular_post_info(target):
+def post_info(url,target):
+    id = target[0]["id"]
     title = target[0].find("a", {"class": "storylink"}).get_text()
+    link = target[0].find("a",{"class":"storylink"})["href"]
     try:
         points = target[1].find("span", {"class": "score"}).get_text()
     except:
@@ -44,33 +44,30 @@ def popular_post_info(target):
     except:
         comments = '0 comments'
 
-    return {"title": title, "points": points, "by": by
-        , "comments": comments}
-
-
-def new_post_info(target):
-    title = target[0].find("a", {"class": "storylink"}).get_text()
-    link = target[0].find("a")['href']
     try:
-        points = target[1].find("span", {"class": "score"}).get_text()
+        comment_link = target[1].find_all("a")[3]
+        commurl = site + comment_link["href"]
     except:
-        points = '0 points'
+        commurl = "deleted"
 
-    try:
-        by = target[1].find("a", {"class": "hnuser"}).get_text()
-    except:
-        by = 'Anonymous'
-    try:
-        comments = target[1].find_all("a")[3].get_text()
-    except:
-        comments = '0 comments'
+    return {"id":id,"title": title, "link": link, "points": points, "by": by
+        , "comments": comments,"commurl":commurl}
 
-    return {"title": title, "link": link, "points": points, "by": by
-        , "comments": comments}
+def get_comments(url):
+    commdetails = []
+    response = requests.get(url)
+    comments = BeautifulSoup(response.text, "html.parser").find_all("td", {"class": "default"})
+    for comment in comments:
+        commdetail = get_commdetail(comment)
+        commdetails.append(commdetail)
+    return commdetails
 
+
+def get_commdetail(comment):
+    name = comment.find("a", {"class": "hnuser"}).get_text()
+    content = comment.find("span", {"class": "commtext"}).get_text()
+    return {'name':name,"content":content}
 
 def get_posts(word):
     posts = extract_posts(word)
     return posts
-
-print(get_posts('newest'))

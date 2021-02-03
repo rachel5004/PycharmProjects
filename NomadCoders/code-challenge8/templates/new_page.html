@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Koiil News</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>Koiil News</h1>
-        <div>"Order by:"
-           <a href="/?order_by=popular">Popular</a>"|"<strong>New</strong>
+        <div>Order by:
+            <a href="/?order_by=popular">Popular</a> | <strong>New</strong>
         </div>
-        <main>
-
-        </main>
     </header>
+    <main>
+        {% for post in posts %}
+            <div>
+                <div>
+                    <a href="/{{post.id}}"><h3>{{post.title}}</h3></a> (
+                    <a href="{{post.link}}">{{post.link}}</a>)
+                </div>
+                <div>
+                    {{post.points}} | By: {{post.by}} | {{post.comments}}
+                </div>
+                <hr>
+            </div>
+        {% endfor %}
+    </main>
 </body>
 </html>

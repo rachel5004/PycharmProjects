@@ -18,16 +18,18 @@ def home():
 
 @app.route("/report")   # welcome과 다르게 인자값x
 def report():
+    # /report?word=<>
     word = request.args.get('word')
     if word:
         word = word.lower()
-        fromDB = db.get(word)
-        if fromDB:
-            jobs = fromDB
+        existingJobs = db.get(word)
+        if existingJobs:
+            jobs = existingJobs
         else:
             jobs = get_so_jobs(word)
             db[word]= jobs
     else: return redirect("/")
     return render_template('report.html',
                            searching_by = word,
-                           resultNum = len(jobs))
+                           resultNum = len(jobs),
+                           jobs = jobs)
