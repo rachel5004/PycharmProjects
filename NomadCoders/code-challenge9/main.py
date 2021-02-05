@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 
 """
@@ -30,33 +31,38 @@ subreddits = [
     "flutter",
     "rust",
     "django"
-]
-
+    ]
 
 app = Flask("DayEleven")
 @app.route("/")
 def main_page():
     return render_template('home.html', subreddits = subreddits)
 
-
-
-
 # /read?sub=on&
 
-# @app.route("/")
-# def result_page():
-#     read = request.args.get("read")
-#     if read == "popular":
-#         posts = get_posts("news")
-#         return render_template("popular_page.html",posts = posts)
-#     elif read == "new":
-#         posts = get_posts("newest")
-#         return render_template("new_page.html", posts=posts)
-#     else:
-#         posts = get_posts("news")
-#         return render_template("popular_page.html", posts=posts)
-# @app.route("/")
+@app.route("/read")
+def result_page():
+    results = []
+    reads = request.args.to_dict("read")
+    subs = reads.values()
+    for read in reads.values():
+        result = scrapper(read)
+        results+=result
+    return render_template('read.html', subs =subs, results = results)
 
 
+def scrapper(read):
+    posts=[]
+    url = f'https://www.reddit.com/r/{read}/top/?t=month'
+    response = requests.get(url,headers = headers)
+    soup = BeautifulSoup(response.text,'html.parser').find("div",{"class":"rpBJOHq2PR60pnwJlUyP0"})
+    targets = soup.find_all("div",{"class":"_1oQyIsiPHYt6nx7VOmd1sz"})
+    for target in targets:
+        upvote = target.find("div", {"class": "_1rZYMD_4xY3gRcSS3p8ODO"}).get_text()
+        link = target.find("a", {"class": "_3jOxDPIQ0KaOWpzvSQo-1s"})['href']
+        title = target.find("h3").get_text()
+        post = {"upvote":upvote,"title":title,"link":link,"sub":read}
+        posts.append(post)
+    return posts
 
 app.run(host="127.0.0.1")

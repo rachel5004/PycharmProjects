@@ -17,7 +17,7 @@
             <h3>Select the subreddits you're interested on:</h3>
             <ul>
                 {% for sub in subreddits %}
-                    <li><label><input type="checkbox" name="{{sub}}">r/{{sub}}</label></li>
+                    <li><label><input type="checkbox" name="{{sub}}" value="{{sub}}">r/{{sub}}</label></li>
                 {% endfor %}
             </ul>
             <button>Aggregate</button>

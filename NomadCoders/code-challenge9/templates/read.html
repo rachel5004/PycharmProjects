@@ -6,6 +6,32 @@
     <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <a href="/">
+                <h1>Reddit Reader</h1>
+        </a>
+        <div>
+            Reading:
+            {% for sub in subs %}
+            r/{{sub}}
+            {% endfor %}
+        </div>
+    </header>
+    <main>
+        {% for result in results %}
+          <div>
+            <div>
+              <a href="{{result.link}}" target="_blank">
+                <h3>{{result.title}}</h3>
+              </a>
+            </div>
+            <div>
+                {{result.upvote}} upvotes • r/{{result.sub}}
+            </div>
+          </div>
+          <hr />
+        {% endfor %}
+    </main>
 
 </body>
 </html>
