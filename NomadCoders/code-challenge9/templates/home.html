@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Reddit Reader</h1>
+        <div>
+            A service to aggregate all your favorite subreddits
+        </div>
+    </header>
+    <main>
+        <form action="/read" method="get">
+            <h3>Select the subreddits you're interested on:</h3>
+            <ul>
+                {% for sub in subreddits %}
+                    <li><label><input type="checkbox" name="{{sub}}">r/{{sub}}</label></li>
+                {% endfor %}
+            </ul>
+            <button>Aggregate</button>
+        </form>
+    </main>
+
+
+</body>
+</html>
