@@ -2,16 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 
 #########
-wwr = "https://weworkremotely.com/remote-jobs/search?term="
-def WWR_scrapper():
-    wwr_jobs =[]
-    response = requests.get(wwr+"python")
-    results = BeautifulSoup(response.text,'html.parser').find("section",{"class":"jobs"}).find_all("li")
+wwr=''
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
+ok =  "https://remoteok.io/"
+def OK_scrapper(word):
+    ok_jobs = []
+    response = requests.get(f"{ok}remote-dev+{word}-jobs",headers = headers)
+    results = BeautifulSoup(response.text,'html.parser').find_all("tr",{"class":"job"})
 
     for result in results:
-        job = WWR_getinfo(result)
-        wwr_jobs.append(job)
-    print(wwr_jobs)
+        job = OK_getinfo(result)
+        ok_jobs.append(job)
+    return ok_jobs
 ############
 
 def SO_getinfo(result):
@@ -25,14 +27,17 @@ def SO_getinfo(result):
     return {"title": title, "company": company, "link": f"https://stackoverflow.com/jobs/{job_id}"}
 
 def WWR_getinfo(result):
-    try:
-        title = result.find("span", {"class": "title"}).get_text()
-        company = result.find("span", {"class": "company"}).get_text()
-        link = "https://weworkremotely.com/remote-jobs" + result.find("a")["href"].replace("/company", "")
-        return {"title": title, "company": company, "link": link}
-    except:pass
+    title = result.find("span", {"class": "title"}).get_text()
+    company = result.find("span", {"class": "company"}).get_text()
+    link = wwr + result.find("a")["href"].replace("/company", "")
 
-def OK_getinfo():
-    pass
+    return {"title": title, "company": company, "link": link}
 
-WWR_scrapper()
+
+def OK_getinfo(result):
+    title = result.find("h2", {"itemprop": "title"}).get_text()
+    company = result.find("h3", {"itemprop": "name"}).get_text()
+    link = ok+result.find("a", {"itemprop": "url"})["href"]
+
+    return {"title": title, "company": company, "link": link}
+
