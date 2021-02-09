@@ -505,6 +505,17 @@ import math
 #         except: pass
 #     if a in lst_res:
 #         print(a)
-def prt(a,b):
-    print(a,b)
-print(1,3)
+lst =[]
+for _ in range(int(input())):
+    lst.append(list(map(int, input().split(" "))))
+# for i in range(len(lst)-1):
+#     for j in range(i+1,len(lst)):
+#         if lst[i][0]>lst[j][0]:
+#             lst[i],lst[j]=lst[j],lst[i]
+#         elif lst[i][0]==lst[j][0]:
+#             if lst[i][1]>lst[j][1]:
+#                 lst[i], lst[j] = lst[j], lst[i]
+lst.sort(key=lambda x: (x[0], x[1]))
+for i in lst:
+    print(i[0],i[1])
+
