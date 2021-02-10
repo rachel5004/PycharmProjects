@@ -505,17 +505,27 @@ import math
 #         except: pass
 #     if a in lst_res:
 #         print(a)
-lst =[]
-for _ in range(int(input())):
-    lst.append(list(map(int, input().split(" "))))
-# for i in range(len(lst)-1):
-#     for j in range(i+1,len(lst)):
-#         if lst[i][0]>lst[j][0]:
-#             lst[i],lst[j]=lst[j],lst[i]
-#         elif lst[i][0]==lst[j][0]:
-#             if lst[i][1]>lst[j][1]:
-#                 lst[i], lst[j] = lst[j], lst[i]
-lst.sort(key=lambda x: (x[0], x[1]))
-for i in lst:
-    print(i[0],i[1])
+# lst =[]
+# for _ in range(int(input())):
+#     lst.append(list(map(int, input().split(" "))))
+# # for i in range(len(lst)-1):
+# #     for j in range(i+1,len(lst)):
+# #         if lst[i][0]>lst[j][0]:
+# #             lst[i],lst[j]=lst[j],lst[i]
+# #         elif lst[i][0]==lst[j][0]:
+# #             if lst[i][1]>lst[j][1]:
+# #                 lst[i], lst[j] = lst[j], lst[i]
+# lst.sort(key=lambda x: (x[0], x[1]))
+# for i in lst:
+#     print(i[0],i[1])
+def InsertionSort(arr):
+    for i in range(1, len(arr)):
+        for j in range(i, 0, -1):
+            if arr[j] > arr[j - 1]:
+                arr[j], arr[j - 1] = arr[j - 1], arr[j]
+    return arr
+arr = []
+for i in input():
+    arr.append(i)
+print("".join(InsertionSort(arr)))
 
