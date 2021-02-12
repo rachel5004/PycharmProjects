@@ -518,14 +518,44 @@ import math
 # lst.sort(key=lambda x: (x[0], x[1]))
 # for i in lst:
 #     print(i[0],i[1])
-def InsertionSort(arr):
-    for i in range(1, len(arr)):
-        for j in range(i, 0, -1):
-            if arr[j] > arr[j - 1]:
-                arr[j], arr[j - 1] = arr[j - 1], arr[j]
-    return arr
-arr = []
-for i in input():
-    arr.append(i)
-print("".join(InsertionSort(arr)))
 
+# def InsertionSort(arr):
+#     for i in range(1, len(arr)):
+#         for j in range(i, 0, -1):
+#             if arr[j] > arr[j - 1]:
+#                 arr[j], arr[j - 1] = arr[j - 1], arr[j]
+#     return arr
+# arr = list(input())
+# print("".join(InsertionSort(arr)))
+#
+# arr = list(map(int,input()))
+# arr.sort(reverse=True)
+# for i in arr: print(i, end='')
+
+# def Sort(arr):
+#     arr = list(set(arr))
+#     for i in range(1, len(arr)):
+#         for j in range(i, 0, -1):
+#             if len(arr[j]) < len(arr[j - 1]):
+#                 arr[j], arr[j - 1] = arr[j - 1], arr[j]
+#             elif len(arr[j]) == len(arr[j - 1]):
+#                 if arr[j] < arr[j-1]:
+#                     arr[j], arr[j - 1] = arr[j - 1], arr[j]
+#     return arr
+# words = []
+# for _ in range(int(input())):
+#     word = input()
+#     words.append(word)
+# for i in (Sort(words)):   #중복단어 제거
+#     print(i)
+
+
+words = []
+for _ in range(int(sys.stdin.readline())):
+    word = sys.stdin.readline()
+    words.append((word, len(word)))
+
+words = list(set(words))
+words.sort(key=lambda word: (word[1], word[0]))
+for i in words:
+    print(i[0])
