@@ -558,9 +558,12 @@ import math
 # words.sort(key=lambda word: (word[1], word[0]))
 # for i in words:
 #     print(i[0])
+
+
 users = []
 for _ in range(int(input())):
-    users.append(list(input().split()))
-users.sort(key=lambda user:user[0])
+    users.append(input().split())
+users.sort(key=lambda user:int(user[0]))
 for user in users:
-    print(" ".join(user))
+    print(user[0],user[1])
+
