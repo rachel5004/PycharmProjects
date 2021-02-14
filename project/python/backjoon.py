@@ -549,13 +549,18 @@ import math
 # for i in (Sort(words)):   #중복단어 제거
 #     print(i)
 
-
-words = []
-for _ in range(int(sys.stdin.readline())):
-    word = sys.stdin.readline()
-    words.append((word, len(word)))
-
-words = list(set(words))
-words.sort(key=lambda word: (word[1], word[0]))
-for i in words:
-    print(i[0])
+# words = []
+# for _ in range(int(sys.stdin.readline())):
+#     word = sys.stdin.readline()
+#     words.append((word, len(word)))
+#
+# words = list(set(words))
+# words.sort(key=lambda word: (word[1], word[0]))
+# for i in words:
+#     print(i[0])
+users = []
+for _ in range(int(input())):
+    users.append(list(input().split()))
+users.sort(key=lambda user:user[0])
+for user in users:
+    print(" ".join(user))
