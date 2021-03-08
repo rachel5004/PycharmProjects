@@ -559,11 +559,11 @@ import math
 # for i in words:
 #     print(i[0])
 
+# users = []
+# for _ in range(int(input())):
+#     users.append(input().split())
+# users.sort(key=lambda user:int(user[0]))
+# for user in users:
+#     print(user[0],user[1])
 
-users = []
-for _ in range(int(input())):
-    users.append(input().split())
-users.sort(key=lambda user:int(user[0]))
-for user in users:
-    print(user[0],user[1])
-
+# n,m = map(int,input().split())
