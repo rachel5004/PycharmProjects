@@ -16,4 +16,19 @@ def solution2(participant, completion):
 
 participant = ["mislav", "stanko", "mislav", "ana"]
 completion = ["stanko", "ana", "mislav"]
-print(solution(participant,completion))
+
+#2
+def solution3(phone_book):
+    phone_book.sort()
+    for i in range(len(phone_book) - 1):
+        if phone_book[i] in phone_book[i + 1]:
+            return False
+    return True
+def solution4(phone_book):
+    phone_book.sort()
+    for p1, p2 in zip(phone_book, phone_book[1:]):
+        if p2.startswith(p1):
+            return False
+    return True
+p = ["12","123","1235","567","88"]
+print(solution3(p))
