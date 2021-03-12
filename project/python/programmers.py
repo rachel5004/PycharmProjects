@@ -43,4 +43,12 @@ def hash3(clothes):
     return cnt - 1
 c1=[["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]]
 c2 = [["crowmask", "face"], ["bluesunglasses", "face"], ["smoky_makeup", "face"]]
-print(hash3(c1))
+
+#3
+def hash4(genres,plays):
+    a=list(zip(genres, plays))
+    a = sorted(a, key = lambda x : (x[0],-x[1]))
+    print(a)
+genres =["classic", "pop", "classic", "classic", "pop"]
+plays =[500, 600, 150, 800, 2500]
+print(hash4(genres,plays))
